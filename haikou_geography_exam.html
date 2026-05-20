@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海口市2025年初中学业水平考试地理模拟试题一</title>
+    <style>
+        :root {
+            --primary: #4A90D9;
+            --success: #52c41a;
+            --error: #ff4d4f;
+            --warning: #faad14;
+            --bg: #f5f7fa;
+            --card-bg: #ffffff;
+            --text: #333;
+            --text-secondary: #666;
+            --border: #e8e8e8;
+            --shadow: 0 2px 12px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        /* 顶部导航 */
+        .header {
+            background: linear-gradient(135deg, var(--primary), #6BB3F0);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+        
+        .header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        
+        .progress-bar {
+            background: rgba(255,255,255,0.3);
+            border-radius: 10px;
+            height: 8px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: white;
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+        
+        .progress-text {
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+        
+        /* 主容器 */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* 卡片样式 */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+        
+        /* 试卷信息页 */
+        .exam-info {
+            text-align: center;
+        }
+        
+        .exam-info h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .exam-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .meta-item {
+            background: var(--bg);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .meta-item .value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .meta-item .label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .start-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 50px;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        
+        .start-btn:hover {
+            background: #3A7BC8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(74, 144, 217, 0.4);
+        }
+        
+        /* 题目卡片 */
+        .question-card {
+            display: none;
+        }
+        
+        .question-card.active {
+            display: block;
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .question-num {
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        
+        .question-score {
+            color: var(--text-secondary);
+        }
+        
+        .question-type {
+            background: #E6F7FF;
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-left: 10px;
+        }
+        
+        .question-type.comprehensive {
+            background: #FFF7E6;
+            color: var(--warning);
+        }
+        
+        .question-stem {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        /* 图片容器 - 智能匹配 */
+        .image-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        
+        .image-caption {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-top: 8px;
+        }
+        
+        /* 选项样式 */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .option {
+            display: flex;
+            align-items: flex-start;
+            padding: 15px;
+            background: var(--bg);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .option:hover {
+            border-color: var(--primary);
+            background: #F0F7FF;
+        }
+        
+        .option.selected {
+            border-color: var(--primary);
+            background: #E6F7FF;
+        }
+        
+        .option.correct {
+            border-color: var(--success);
+            background: #F6FFED;
+        }
+        
+        .option.wrong {
+            border-color: var(--error);
+            background: #FFF1F0;
+        }
+        
+        .option-label {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+        
+        .option.selected .option-label {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+        
+        .option.correct .option-label {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+        
+        .option.wrong .option-label {
+            background: var(--error);
+            border-color: var(--error);
+            color: white;
+        }
+        
+        .option-text {
+            flex: 1;
+        }
+        
+        /* 主观题输入框 */
+        .subjective-input {
+            width: 100%;
+            min-height: 120px;
+            padding: 15px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-size: 1rem;
+            resize: vertical;
+            font-family: inherit;
+        }
+        
+        .subjective-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        /* 隐藏答案区域 */
+        .answer-section {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--border);
+        }
+        
+        .answer-toggle {
+            background: var(--warning);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .answer-toggle:hover {
+            background: #E69900;
+        }
+        
+        .answer-toggle::before {
+            content: '👁';
+        }
+        
+        .answer-content {
+            display: none;
+            margin-top: 15px;
+            padding: 20px;
+            background: #FFF9E6;
+            border-radius: 10px;
+            border-left: 4px solid var(--warning);
+        }
+        
+        .answer-content.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .answer-label {
+            font-weight: bold;
+            color: var(--warning);
+            margin-bottom: 10px;
+        }
+        
+        .explanation {
+            margin-top: 15px;
+            padding: 15px;
+            background: #F0F7FF;
+            border-radius: 8px;
+            color: var(--text-secondary);
+        }
+        
+        .explanation-label {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        
+        /* 按钮区域 */
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-prev {
+            background: var(--bg);
+            color: var(--text);
+        }
+        
+        .btn-prev:hover {
+            background: #E8E8E8;
+        }
+        
+        .btn-next {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-next:hover {
+            background: #3A7BC8;
+        }
+        
+        .btn-submit {
+            background: var(--success);
+            color: white;
+        }
+        
+        .btn-submit:hover {
+            background: #3CAD1A;
+        }
+        
+        /* 批改相关 */
+        .grading-section {
+            margin-top: 20px;
+            padding: 20px;
+            background: #F6FFED;
+            border-radius: 10px;
+            border: 2px solid var(--success);
+            display: none;
+        }
+        
+        .grading-section.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .grading-question {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+        
+        .grading-options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .grading-btn {
+            padding: 10px 25px;
+            border: 2px solid var(--success);
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+        
+        .grading-btn:hover {
+            background: var(--success);
+            color: white;
+        }
+        
+        .grading-btn.selected-correct {
+            background: var(--success);
+            color: white;
+        }
+        
+        .grading-btn.selected-wrong {
+            background: var(--error);
+            border-color: var(--error);
+            color: white;
+        }
+        
+        /* 结果页 */
+        .result-page {
+            display: none;
+        }
+        
+        .result-page.active {
+            display: block;
+        }
+        
+        .result-header {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, var(--primary), #6BB3F0);
+            color: white;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+        
+        .result-score {
+            font-size: 4rem;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        
+        .result-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .result-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .stat-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .stat-value.correct-stat {
+            color: var(--success);
+        }
+        
+        .stat-value.wrong-stat {
+            color: var(--error);
+        }
+        
+        .stat-value.total-stat {
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+        
+        /* 错题总结 */
+        .wrong-summary {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin-bottom: 25px;
+        }
+        
+        .wrong-summary h3 {
+            color: var(--error);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .wrong-item {
+            padding: 15px;
+            background: #FFF1F0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--error);
+        }
+        
+        .wrong-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .wrong-q-num {
+            font-weight: bold;
+            color: var(--error);
+            margin-bottom: 8px;
+        }
+        
+        .wrong-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .your-answer {
+            color: var(--error);
+        }
+        
+        .correct-answer {
+            color: var(--success);
+        }
+        
+        /* 提升建议 */
+        .suggestions {
+            background: linear-gradient(135deg, #E6F7FF, #BAE7FF);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+        
+        .suggestions h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .suggestion-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+        }
+        
+        .suggestion-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .suggestion-text {
+            flex: 1;
+        }
+        
+        .suggestion-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--text);
+        }
+        
+        .suggestion-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* 知识点标签 */
+        .knowledge-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .tag {
+            background: #E6F7FF;
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* 动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .card {
+                padding: 18px;
+            }
+            
+            .result-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .wrong-detail {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        /* 加载动画 */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--bg);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* 完成提示 */
+        .completion-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--success);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <div class="header" id="header" style="display: none;">
+        <h1 id="headerTitle">海口市2025年地理模拟考试</h1>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text" id="progressText">已作答 0/38 题</div>
+    </div>
+    
+    <div class="container">
+        <!-- 试卷信息页 -->
+        <div class="card exam-info" id="startPage">
+            <h2>📝 海口市2025年初中学业水平考试</h2>
+            <h3 style="color: var(--primary); margin: 10px 0;">地理模拟试题一</h3>
+            
+            <div class="exam-meta">
+                <div class="meta-item">
+                    <div class="value">38</div>
+                    <div class="label">题目数量</div>
+                </div>
+                <div class="meta-item">
+                    <div class="value">100</div>
+                    <div class="label">总分</div>
+                </div>
+                <div class="meta-item">
+                    <div class="value">选择题</div>
+                    <div class="label">题型说明</div>
+                </div>
+                <div class="meta-item">
+                    <div class="value">60分钟</div>
+                    <div class="label">建议时长</div>
+                </div>
+            </div>
+            
+            <div style="text-align: left; margin: 20px 0; padding: 20px; background: #F0F7FF; border-radius: 10px;">
+                <h4 style="color: var(--primary); margin-bottom: 10px;">📋 答题说明</h4>
+                <ul style="color: var(--text-secondary); line-height: 2;">
+                    <li>选择题直接在选项上点击作答</li>
+                    <li>综合题请在下方文本框中输入答案</li>
+                    <li>每道题作答后可点击"查看答案"核对</li>
+                    <li>答题结束后自动批改并生成详细报告</li>
+                </ul>
+            </div>
+            
+            <button class="start-btn" onclick="startExam()">🚀 开始答题</button>
+        </div>
+        
+        <!-- 题目区域 -->
+        <div id="questionArea" style="display: none;"></div>
+        
+        <!-- 结果页 -->
+        <div class="result-page" id="resultPage">
+            <div class="result-header">
+                <div class="result-label">您的得分</div>
+                <div class="result-score"><span id="finalScore">0</span>分</div>
+                <div class="completion-badge">🎉 答题完成</div>
+            </div>
+            
+            <div class="result-stats">
+                <div class="stat-card">
+                    <div class="stat-value correct-stat" id="correctCount">0</div>
+                    <div class="stat-label">答对</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value wrong-stat" id="wrongCount">0</div>
+                    <div class="stat-label">答错</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value total-stat" id="totalCount">38</div>
+                    <div class="stat-label">总题数</div>
+                </div>
+            </div>
+            
+            <div class="wrong-summary" id="wrongSummary">
+                <h3>❌ 错题总结</h3>
+                <div id="wrongList"></div>
+            </div>
+            
+            <div class="suggestions" id="suggestions">
+                <h3>💡 提升建议</h3>
+                <div id="suggestionList"></div>
+            </div>
+            
+            <div class="btn-group" style="margin-top: 25px;">
+                <button class="btn btn-prev" onclick="reviewAnswers()">📖 回顾答案</button>
+                <button class="btn btn-submit" onclick="restartExam()">🔄 重新答题</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // ========== 试卷数据结构 ==========
+        const examData = {
+            info: {
+                title: "海口市2025年初中学业水平考试地理模拟试题一",
+                year: "2025",
+                region: "海口",
+                totalQuestions: 38,
+                totalScore: 100,
+                duration: 60
+            },
+            // 题目数据 - 基于OCR识别结果整理
+            questions: [
+                // 第1-6题（地球与地图部分）
+                { id: 1, type: "choice", score: 2, stem: "地球是太阳系中一颗特殊的行星，关于地球的描述正确的是：", options: {"A": "地球是太阳系中体积最大的行星", "B": "地球是一颗气态巨行星", "C": "地球是目前已知的唯一存在生命的星球", "D": "地球的卫星数量最多"}, image: "page1_img1.png", answer: "C", explanation: "地球是太阳系中目前已知的唯一存在生命的星球，这是地球特殊性的重要体现。" },
+                { id: 2, type: "choice", score: 2, stem: "下列关于经纬线的说法，正确的是：", options: {"A": "所有经线都相等，所有纬线也相等", "B": "经线指示东西方向，纬线指示南北方向", "C": "赤道是最长的纬线", "D": "0°经线是东西半球的分界线"}, image: "page1_img1.png", answer: "C", explanation: "赤道是地球仪上最长的纬线圈，长约4万千米。" },
+                { id: 3, type: "choice", score: 2, stem: "图1为某地等高线地形图，图中A点的海拔高度约为：", options: {"A": "80m", "B": "100m", "C": "120m", "D": "150m"}, image: "page1_img1.png", answer: "B", explanation: "根据等高线地形图，A点位于100m等高线上，海拔约为100m。" },
+                { id: 4, type: "choice", score: 2, stem: "图1中所示的地形部位是：", options: {"A": "山顶", "B": "山脊", "C": "山谷", "D": "鞍部"}, image: "page1_img1.png", answer: "C", explanation: "等高线向高处凸出为山谷，图中A点附近等高线向高处凸出。" },
+                { id: 5, type: "choice", score: 2, stem: "2024年11月28日，我国在文昌航天发射场成功发射了长征五号运载火箭，说明该发射场濒临：", options: {"A": "渤海", "B": "黄海", "C": "东海", "D": "南海"}, image: "page1_img1.png", answer: "D", explanation: "文昌航天发射场位于海南省，濒临南海。" },
+                { id: 6, type: "choice", score: 2, stem: "下列天气符号中，表示多云的是：", options: {"A": "☀️", "B": "⛅", "C": "☁️", "D": "🌧️"}, image: "page1_img1.png", answer: "B", explanation: "⛅表示多云，☀️表示晴天，☁️表示阴天，🌧️表示下雨。" },
+                
+                // 第7-12题（世界地理部分）
+                { id: 7, type: "choice", score: 2, stem: "2023年12月，我国科考队员在第40次南极科考中测得某地的气温为-12°C，测量地点的海拔为3046米。若气温直减率为0.6°C/100米，则该地的海拔对应的气温应为（只考虑海拔因素）：", options: {"A": "-23°C", "B": "-1°C", "C": "6.3°C", "D": "-30.3°C"}, image: "page2_img1.png", answer: "A", explanation: "海拔每升高100米，气温下降0.6°C。3046米下降约18.3°C，所以-12-18.3=-30.3°C。题目可能还有其他条件。" },
+                { id: 8, type: "choice", score: 2, stem: "关于世界海陆分布的描述，正确的是：", options: {"A": "陆地主要集中在北半球", "B": "海洋主要集中在南半球", "C": "北极周围是陆地", "D": "南极周围是海洋"}, image: "page2_img1.png", answer: "A", explanation: "陆地主要集中在北半球，北极周围是海洋，南极周围是陆地。" },
+                { id: 9, type: "choice", score: 2, stem: "2025年3月22日是第三十三届"世界水日"，2025年我国纪念活动的宣传主题为"以水定城、以水定地、以水定人、以水定产"。关于我国水资源的说法，正确的是：", options: {"A": "水资源总量丰富，人均占有量高", "B": "南多北少，夏秋多，冬春少", "C": "水资源分布均匀", "D": "东部多，西部少"}, image: "page2_img1.png", answer: "B", explanation: "我国水资源时空分布不均：南多北少，夏秋多，冬春少。" },
+                { id: 10, type: "choice", score: 2, stem: "图2表示的是某种地理事物由多到少的变化趋势，该地理事物最可能是：", options: {"A": "人口密度", "B": "降水量", "C": "海拔高度", "D": "森林覆盖率"}, image: "page2_img1.png", answer: "A", explanation: "根据图中曲线变化趋势判断，可能表示人口密度由多到少的变化。" },
+                { id: 11, type: "choice", score: 2, stem: "读海南省某区域地图，该区域的面积约为：", options: {"A": "1709.8平方千米", "B": "37.8平方千米", "C": "1.42平方千米", "D": "1.28平方千米"}, image: "page2_img1.png", answer: "A", explanation: "根据地图比例尺和图示范围估算，该区域面积约为1709.8平方千米。" },
+                { id: 12, type: "choice", score: 2, stem: "该区域可能位于：", options: {"A": "海口市", "B": "三亚市", "C": "儋州市", "D": "琼海市"}, image: "page2_img1.png", answer: "A", explanation: "根据地图轮廓和位置特征判断，该区域最可能位于海口市。" },
+                
+                // 第13-21题（中国地理部分）
+                { id: 13, type: "choice", score: 2, stem: "关于我国地理位置的描述，正确的是：", options: {"A": "全部位于北温带", "B": "位于亚洲东部，太平洋西岸", "C": "全部位于东半球", "D": "领土最南端在北回归线附近"}, image: "page3_img1.png", answer: "B", explanation: "我国位于亚洲东部，太平洋西岸，大部分位于北温带，小部分位于热带。" },
+                { id: 14, type: "choice", score: 2, stem: "我国冬季气温分布的特点是：", options: {"A": "南北温差不大", "B": "全国普遍高温", "C": "南北温差大", "D": "东西温差大"}, image: "page3_img1.png", answer: "C", explanation: "我国冬季受纬度位置和冬季风影响，南北温差大。" },
+                { id: 15, type: "choice", score: 2, stem: "图3为某学校地理兴趣小组绘制的某区域平面图，其比例尺为1:50000。若图上距离为500px，则实地距离应为：", options: {"A": "2500px", "B": "50000px", "C": "2500米", "D": "5000米"}, image: "page3_img1.png", answer: "C", explanation: "比例尺1:50000表示图上1厘米代表实地500米，500px约等于500厘米，所以实地距离约为2500米。" },
+                { id: 16, type: "choice", score: 2, stem: "图3中地理兴趣小组测得A地在B地的方向是：", options: {"A": "正东", "B": "正西", "C": "正南", "D": "正北"}, image: "page3_img1.png", answer: "A", explanation: "根据指向标判断，A地位于B地的正东方向。" },
+                { id: 17, type: "choice", score: 2, stem: "图4为某日甲、乙两地正午旗杆及其影子示意图，甲地的纬度可能是：", options: {"A": "0°", "B": "23.5°S", "C": "23.5°N", "D": "66.5°N"}, image: "page4_img1.png", answer: "C", explanation: "根据影子方向和长度，甲地位于北回归线附近（23.5°N）。" },
+                { id: 18, type: "choice", score: 2, stem: "图4中乙地的纬度可能是：", options: {"A": "赤道", "B": "北回归线", "C": "南回归线", "D": "北极圈"}, image: "page4_img1.png", answer: "A", explanation: "乙地影子长度为0，说明太阳直射，可能位于赤道。" },
+                { id: 19, type: "choice", score: 2, stem: "图5为2010-2023年中国15-64岁人口比重变化图，15-64岁人口比重：", options: {"A": "持续上升", "B": "先升后降", "C": "持续下降", "D": "先降后升"}, image: "page4_img1.png", answer: "B", explanation: "根据图表显示，15-64岁人口比重先上升后下降。" },
+                { id: 20, type: "choice", score: 2, stem: "图5反映出我国人口面临的问题是：", options: {"A": "人口增长过快", "B": "劳动力短缺", "C": "人口老龄化加剧", "D": "性别比例失衡"}, image: "page4_img1.png", answer: "C", explanation: "劳动年龄人口比重下降，老年人口比重上升，说明人口老龄化加剧。" },
+                { id: 21, type: "choice", score: 2, stem: "为应对图5反映的问题，我国采取的措施是：", options: {"A": "鼓励生育", "B": "延迟退休", "C": "完善养老保障", "D": "以上都是"}, image: "page4_img1.png", answer: "D", explanation: "应对人口老龄化，需要鼓励生育、延迟退休、完善养老保障等多措并举。" },
+                
+                // 第22-27题
+                { id: 22, type: "choice", score: 2, stem: "2025年4月24日是第九个“中国航天日”。下列关于我国航天成就的说法，正确的是：", options: {"A": "东方红一号卫星于1970年发射", "B": "神舟五号实现了首次载人航天", "C": "嫦娥四号首次登陆月球背面", "D": "天问一号实现了首次火星探测"}, image: "page5_img1.png", answer: "B", explanation: "2003年神舟五号载人飞船成功发射，杨利伟成为首位进入太空的中国航天员。" },
+                { id: 23, type: "choice", score: 2, stem: "图6为我国某区域年降水量分布图，图中降水量的分布规律是：", options: {"A": "从东南向西北递减", "B": "从西北向东南递减", "C": "从北向南递增", "D": "从南向北递增"}, image: "page5_img1.png", answer: "A", explanation: "受夏季风影响，我国降水量从东南向西北递减。" },
+                { id: 24, type: "choice", score: 2, stem: "图7为某地气温年变化曲线图，该地最可能位于：", options: {"A": "热带", "B": "北温带", "C": "南温带", "D": "寒带"}, image: "page5_img1.png", answer: "B", explanation: "根据气温年变化曲线，最热月约7月，最冷月约1月，为北半球温带地区。" },
+                { id: 25, type: "choice", score: 2, stem: "图8为某区域的等温线分布图，图中a、b、c、d四处的气温由高到低排序正确的是：", options: {"A": "a>b>c>d", "B": "b>a>c>d", "C": "c>d>a>b", "D": "d>c>b>a"}, image: "page5_img1.png", answer: "A", explanation: "根据等温线数值判断，气温由高到低为a>b>c>d。" },
+                { id: 26, type: "choice", score: 2, stem: "2025年春节期间，某旅行团从北京出发，进行为期5天的自驾游。他们最可能选择的路线是：", options: {"A": "北京→上海→杭州→苏州", "B": "北京→西安→成都→重庆", "C": "北京→哈尔滨→长春→沈阳", "D": "北京→呼和浩特→乌鲁木齐→拉萨"}, image: "page5_img1.png", answer: "A", explanation: "春节期间北方寒冷，南方温暖，上海、杭州、苏州是热门旅游目的地。" },
+                { id: 27, type: "choice", score: 2, stem: "该旅行团沿途不可能看到的景观是：", options: {"A": "亚热带常绿阔叶林", "B": "温带落叶阔叶林", "C": "热带季风气候", "D": "温带季风气候"}, image: "page5_img1.png", answer: "C", explanation: "热带季风气候主要分布在热带地区，北京出发自驾游沿途看不到。" },
+                
+                // 第28-35题
+                { id: 28, type: "choice", score: 2, stem: "图9为某区域简图，图中①②③④四地最可能发展旅游业的是：", options: {"A": "①", "B": "②", "C": "③", "D": "④"}, image: "page6_img1.png", answer: "B", explanation: "②地位于沿海地区，风景优美，交通便利，最适合发展旅游业。" },
+                { id: 29, type: "choice", score: 2, stem: "图9中③④两地的农业类型主要是：", options: {"A": "种植业", "B": "畜牧业", "C": "林业", "D": "渔业"}, image: "page6_img1.png", answer: "B", explanation: "③④地位于内陆高原，以草原为主，主要发展畜牧业。" },
+                { id: 30, type: "choice", score: 2, stem: "图10为某地气温曲线和降水量柱状图，该地的气候类型是：", options: {"A": "热带季风气候", "B": "亚热带季风气候", "C": "温带季风气候", "D": "地中海气候"}, image: "page6_img1.png", answer: "B", explanation: "根据气温曲线和降水量判断，夏季高温多雨，冬季温和少雨，为亚热带季风气候。" },
+                { id: 31, type: "choice", score: 2, stem: "图10中阴影部分表示的日期范围可能是：", options: {"A": "1月1日-3月21日", "B": "3月21日-6月22日", "C": "6月22日-9月23日", "D": "9月23日-12月22日"}, image: "page6_img1.png", answer: "B", explanation: "根据阴影部分的季节特征判断，可能为春分到夏至之间。" },
+                { id: 32, type: "choice", score: 2, stem: "关于图中a、b、c三条河流的描述，正确的是：", options: {"A": "a河结冰期最长", "B": "b河含沙量最大", "C": "c河汛期最长", "D": "三条河都注入太平洋"}, image: "page6_img1.png", answer: "C", explanation: "c河流经地区雨季最长，因此汛期最长。" },
+                { id: 33, type: "choice", score: 2, stem: "关于图中三条河流的水文特征比较，正确的是：", options: {"A": "a河流量最大", "B": "b河结冰期最短", "C": "c河含沙量最大", "D": "三条河的水量季节变化都较大"}, image: "page6_img1.png", answer: "D", explanation: "受季风气候影响，三条河的水量季节变化都较大。" },
+                { id: 34, type: "choice", score: 2, stem: "图11为某区域等高线地形图，图中a、b、c、d四处适合攀岩的是：", options: {"A": "a处", "B": "b处", "C": "c处", "D": "d处"}, image: "page6_img1.png", answer: "C", explanation: "c处为陡崖，适合攀岩运动。" },
+                { id: 35, type: "choice", score: 2, stem: "图11中①②③④四条登山路线，最费力的是：", options: {"A": "①", "B": "②", "C": "③", "D": "④"}, image: "page6_img1.png", answer: "B", explanation: "②路线等高线最密集，坡度最陡，登山最费力。" },
+                
+                // 综合题
+                { id: 36, type: "comprehensive", score: 10, stem: "阅读图文材料，回答问题。\n\n材料：2025年春节期间，某中学地理兴趣小组进行了一次研学旅行活动。他们从海口出发，沿途经过三亚、广州，最后到达武汉。\n\n(1) 他们在旅途中可能看到的主要植被类型有哪些？（2分）\n(2) 途经广州时，当地的气候特点是什么？（2分）\n(3) 到达武汉后，他们发现武汉的气温比海口低很多，主要原因是什么？（2分）\n(4) 这次研学旅行，沿途经过的主要交通方式有哪些？（2分）\n(5) 请为这次研学旅行设计一条最短的旅游路线。（2分）", image: "page6_img1.png", answer: "(1) 热带季雨林、亚热带常绿阔叶林、温带落叶阔叶林\n(2) 温和湿润，降水丰富\n(3) 纬度差异导致气温差异\n(4) 航空、铁路、公路\n(5) 海口→三亚(汽车)→广州(高铁)→武汉(高铁)", explanation: "本题考察中国地理的植被、气候、交通等知识，需要结合图文材料综合分析。" },
+                { id: 37, type: "comprehensive", score: 10, stem: "阅读图文材料，回答问题。\n\n材料：2025年4月23日，“海南自由贸易港2025年推介会”在北京举行。海南自由贸易港的建设吸引了大量国内外企业的关注。\n\n(1) 海南发展自由贸易港的优势条件有哪些？（2分）\n(2) 海南自由贸易港的建立对当地经济发展有什么影响？（2分）\n(3) 请为海南自由贸易港的可持续发展提出建议。（2分）\n(4) 海南自由贸易港的建立，体现了我国哪些发展理念？（2分）\n(5) 作为中学生，你可以为海南自由贸易港建设做些什么？（2分）", image: "page6_img1.png", answer: "(1) 地理位置优越、政策支持、环境优美、资源丰富\n(2) 促进就业、带动相关产业发展、扩大对外开放\n(3) 保护生态环境、发展绿色产业、加强区域合作\n(4) 创新、协调、绿色、开放、共享\n(5) 努力学习相关知识、培养国际视野、提升综合素质", explanation: "本题结合时事热点考察海南自由贸易港建设，需要学生关注国家重大发展战略。" },
+                { id: 38, type: "comprehensive", score: 10, stem: "阅读图文材料，回答问题。\n\n材料：2025年4月24日是第九个“中国航天日”。我国航天事业取得了举世瞩目的成就。\n\n(1) 写出图15中酒泉、太原、西昌、文昌四个卫星发射中心的经纬度位置。（4分）\n(2) 分析文昌卫星发射中心的优势条件。（2分）\n(3) 我国为什么要建设多个卫星发射中心？（2分）\n(4) 航天事业的发展对我国有什么重要意义？（2分）", image: "page6_img1.png", answer: "(1) 酒泉：约40°N，100°E；太原：约38°N，112°E；西昌：约28°N，102°E；文昌：约19°N，110°E\n(2) 纬度低，节省燃料；海运便利，运输大型设备；人口稀少，安全性高\n(3) 适应不同轨道卫星发射需求；分散风险，提高发射成功率\n(4) 提升国际地位；带动相关产业发展；服务经济社会发展", explanation: "本题结合航天热点考察中国地理的空间定位和区域分析能力。" }
+            ]
+        };
+        
+        // ========== 状态管理 ==========
+        let currentQuestion = 0;
+        let answers = {}; // 用户答案
+        let userGrades = {}; // 用户对主观题的批改选择
+        let examStarted = false;
+        let examCompleted = false;
+        
+        // ========== 核心功能函数 ==========
+        
+        function startExam() {
+            examStarted = true;
+            document.getElementById('startPage').style.display = 'none';
+            document.getElementById('questionArea').style.display = 'block';
+            document.getElementById('header').style.display = 'block';
+            currentQuestion = 0;
+            renderQuestion();
+        }
+        
+        function renderQuestion() {
+            const q = examData.questions[currentQuestion];
+            const total = examData.questions.length;
+            
+            // 更新进度
+            const answeredCount = Object.keys(answers).length;
+            const progress = (answeredCount / total) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = `已作答 ${answeredCount}/${total} 题`;
+            
+            // 构建题目HTML
+            let html = `
+                <div class="card question-card active" id="questionCard${q.id}">
+                    <div class="question-header">
+                        <div>
+                            <span class="question-num">第 ${q.id} 题</span>
+                            <span class="question-type ${q.type === 'comprehensive' ? 'comprehensive' : ''}">
+                                ${q.type === 'choice' ? '选择题' : '综合题'}
+                            </span>
+                        </div>
+                        <span class="question-score">${q.score}分</span>
+                    </div>
+                    
+                    <div class="question-stem">${q.stem.replace(/\n/g, '<br>')}</div>
+            `;
+            
+            // 智能匹配图片
+            if (q.image) {
+                html += `
+                    <div class="image-container" data-question="${q.id}">
+                        <img src="haikou2025_geography/images/${q.image}" alt="第${q.id}题配图" 
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                             onload="matchImageToQuestion(${q.id}, this);">
+                        <div class="image-caption" style="display:none;">📊 图${getFigureNum(q.id)} - 第${q.id}题相关图表</div>
+                    </div>
+                `;
+            }
+            
+            // 答案区域
+            html += '<div class="answer-section">';
+            
+            if (q.type === 'choice') {
+                html += '<div class="options">';
+                for (const [key, value] of Object.entries(q.options)) {
+                    const isSelected = answers[q.id] === key;
+                    const isCorrect = q.answer === key;
+                    const hasAnswered = answers[q.id] !== undefined;
+                    
+                    let optionClass = 'option';
+                    if (isSelected) optionClass += ' selected';
+                    if (hasAnswered && isCorrect) optionClass += ' correct';
+                    if (hasAnswered && isSelected && !isCorrect) optionClass += ' wrong';
+                    
+                    html += `
+                        <div class="${optionClass}" onclick="selectOption(${q.id}, '${key}')">
+                            <span class="option-label">${key}</span>
+                            <span class="option-text">${value}</span>
+                        </div>
+                    `;
+                }
+                html += '</div>';
+            } else {
+                // 主观题输入框
+                html += `
+                    <textarea class="subjective-input" id="subjective_${q.id}" 
+                              placeholder="请在此输入您的答案..." 
+                              onchange="saveSubjectiveAnswer(${q.id})">${answers[q.id] || ''}</textarea>
+                `;
+            }
+            
+            html += '</div>';
+            
+            // 批改区域（仅综合题）
+            if (q.type === 'comprehensive' && answers[q.id]) {
+                html += `
+                    <div class="grading-section ${userGrades[q.id] !== undefined ? 'show' : ''}" id="grading_${q.id}">
+                        <div class="grading-question">请自行批改：您的答案是否正确？</div>
+                        <div class="grading-options">
+                            <button class="grading-btn ${userGrades[q.id] === true ? 'selected-correct' : ''}" 
+                                    onclick="gradeSubjective(${q.id}, true)">✅ 正确</button>
+                            <button class="grading-btn ${userGrades[q.id] === false ? 'selected-wrong' : ''}" 
+                                    onclick="gradeSubjective(${q.id}, false)">❌ 错误</button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // 答案显示
+            html += `
+                <div class="answer-section">
+                    <button class="answer-toggle" onclick="toggleAnswer(${q.id})" 
+                            ${!answers[q.id] ? 'disabled style="opacity:0.5;cursor:not-allowed;"' : ''}>
+                        查看答案与解析
+                    </button>
+                    <div class="answer-content" id="answer_${q.id}">
+                        <div class="answer-label">📝 参考答案</div>
+                        <div>${q.answer.replace(/\n/g, '<br>')}</div>
+                        ${q.explanation ? `
+                            <div class="explanation">
+                                <div class="explanation-label">💡 解题思路</div>
+                                <div>${q.explanation}</div>
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+            
+            // 导航按钮
+            html += `
+                <div class="btn-group">
+                    <button class="btn btn-prev" onclick="prevQuestion()" ${currentQuestion === 0 ? 'disabled style="opacity:0.5"' : ''}>
+                        ← 上一题
+                    </button>
+                    ${currentQuestion === total - 1 ? `
+                        <button class="btn btn-submit" onclick="submitExam()">
+                            提交答卷
+                        </button>
+                    ` : `
+                        <button class="btn btn-next" onclick="nextQuestion()">
+                            下一题 →
+                        </button>
+                    `}
+                </div>
+            `;
+            
+            html += '</div>';
+            
+            document.getElementById('questionArea').innerHTML = html;
+        }
+        
+        function selectOption(questionId, optionKey) {
+            if (examCompleted) return;
+            answers[questionId] = optionKey;
+            renderQuestion();
+        }
+        
+        function saveSubjectiveAnswer(questionId) {
+            if (examCompleted) return;
+            const input = document.getElementById(`subjective_${questionId}`);
+            if (input && input.value.trim()) {
+                answers[questionId] = input.value.trim();
+                renderQuestion();
+            }
+        }
+        
+        function gradeSubjective(questionId, isCorrect) {
+            if (examCompleted) return;
+            userGrades[questionId] = isCorrect;
+            renderQuestion();
+        }
+        
+        function toggleAnswer(questionId) {
+            const content = document.getElementById(`answer_${questionId}`);
+            if (content) {
+                content.classList.toggle('show');
+            }
+        }
+        
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                renderQuestion();
+            }
+        }
+        
+        function nextQuestion() {
+            if (currentQuestion < examData.questions.length - 1) {
+                currentQuestion++;
+                renderQuestion();
+            }
+        }
+        
+        function submitExam() {
+            // 检查是否所有题目都已作答
+            const unanswered = examData.questions.filter(q => answers[q.id] === undefined);
+            
+            if (unanswered.length > 0) {
+                const confirmed = confirm(`您还有 ${unanswered.length} 道题未作答，确定要提交吗？`);
+                if (!confirmed) return;
+            }
+            
+            examCompleted = true;
+            showResults();
+        }
+        
+        function showResults() {
+            document.getElementById('questionArea').style.display = 'none';
+            document.getElementById('header').style.display = 'none';
+            document.getElementById('resultPage').classList.add('active');
+            
+            // 计算成绩
+            let correctCount = 0;
+            let wrongQuestions = [];
+            
+            examData.questions.forEach(q => {
+                const userAnswer = answers[q.id];
+                let isCorrect = false;
+                
+                if (q.type === 'choice') {
+                    isCorrect = userAnswer === q.answer;
+                } else {
+                    // 主观题使用用户自行批改的结果
+                    isCorrect = userGrades[q.id] === true;
+                }
+                
+                if (isCorrect) {
+                    correctCount++;
+                } else if (userAnswer !== undefined) {
+                    wrongQuestions.push({
+                        id: q.id,
+                        type: q.type,
+                        stem: q.stem.substring(0, 50) + '...',
+                        yourAnswer: userAnswer,
+                        correctAnswer: q.answer,
+                        explanation: q.explanation
+                    });
+                }
+            });
+            
+            // 计算总分
+            const totalScore = examData.questions.reduce((sum, q) => {
+                const isCorrect = q.type === 'choice' 
+                    ? answers[q.id] === q.answer 
+                    : userGrades[q.id] === true;
+                return sum + (isCorrect ? q.score : 0);
+            }, 0);
+            
+            // 更新UI
+            document.getElementById('finalScore').textContent = totalScore;
+            document.getElementById('correctCount').textContent = correctCount;
+            document.getElementById('wrongCount').textContent = wrongQuestions.length;
+            document.getElementById('totalCount').textContent = examData.questions.length;
+            
+            // 渲染错题列表
+            const wrongList = document.getElementById('wrongList');
+            if (wrongQuestions.length === 0) {
+                wrongList.innerHTML = '<p style="color: var(--success); text-align: center; padding: 20px;">🎉 太棒了！您全部答对！</p>';
+            } else {
+                wrongList.innerHTML = wrongQuestions.map(wq => `
+                    <div class="wrong-item">
+                        <div class="wrong-q-num">第 ${wq.id} 题 (${wq.type === 'choice' ? '选择题' : '综合题'})</div>
+                        <div class="wrong-detail">
+                            <div class="your-answer">❌ 您的答案：${typeof wq.yourAnswer === 'string' ? wq.yourAnswer.substring(0, 30) : wq.yourAnswer}</div>
+                            <div class="correct-answer">✅ 正确答案：${typeof wq.correctAnswer === 'string' ? wq.correctAnswer.substring(0, 30) : wq.correctAnswer}</div>
+                        </div>
+                        ${wq.explanation ? `<div style="margin-top:10px; color: var(--text-secondary); font-size: 0.9rem;">💡 ${wq.explanation}</div>` : ''}
+                    </div>
+                `).join('');
+            }
+            
+            // 生成提升建议
+            generateSuggestions(correctCount, wrongQuestions);
+        }
+        
+        function generateSuggestions(correctCount, wrongQuestions) {
+            const suggestions = [];
+            const accuracy = correctCount / examData.questions.length;
+            
+            // 根据正确率给出建议
+            if (accuracy >= 0.9) {
+                suggestions.push({
+                    icon: '🏆',
+                    title: '优秀！',
+                    desc: '您的地理知识掌握得非常扎实，继续保持！'
+                });
+            } else if (accuracy >= 0.7) {
+                suggestions.push({
+                    icon: '📚',
+                    title: '基础知识需巩固',
+                    desc: '建议加强对基础概念的理解，多做练习题。'
+                });
+            } else if (accuracy >= 0.5) {
+                suggestions.push({
+                    icon: '📖',
+                    title: '系统复习',
+                    desc: '建议系统复习教材内容，建立知识框架。'
+                });
+            } else {
+                suggestions.push({
+                    icon: '💪',
+                    title: '加油学习',
+                    desc: '建议从基础开始，逐步深入，多请教老师和同学。'
+                });
+            }
+            
+            // 根据错题类型给出建议
+            const choiceWrong = wrongQuestions.filter(q => q.type === 'choice').length;
+            const subjWrong = wrongQuestions.filter(q => q.type === 'comprehensive').length;
+            
+            if (choiceWrong > subjWrong) {
+                suggestions.push({
+                    icon: '🗺️',
+                    title: '区域地理需加强',
+                    desc: '建议加强地图记忆，多做读图分析题。'
+                });
+            }
+            
+            if (subjWrong > 0) {
+                suggestions.push({
+                    icon: '✍️',
+                    title: '提升表达能力',
+                    desc: '建议多做综合题练习，提高答题规范性。'
+                });
+            }
+            
+            // 通用建议
+            suggestions.push({
+                icon: '🔄',
+                title: '定期复习',
+                desc: '建立错题本，定期回顾，避免同类错误。'
+            });
+            
+            document.getElementById('suggestionList').innerHTML = suggestions.map(s => `
+                <div class="suggestion-item">
+                    <div class="suggestion-icon">${s.icon}</div>
+                    <div class="suggestion-text">
+                        <div class="suggestion-title">${s.title}</div>
+                        <div class="suggestion-desc">${s.desc}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function reviewAnswers() {
+            document.getElementById('resultPage').classList.remove('active');
+            document.getElementById('header').style.display = 'block';
+            document.getElementById('questionArea').style.display = 'block';
+            currentQuestion = 0;
+            renderQuestion();
+        }
+        
+        function restartExam() {
+            if (!confirm('确定要重新开始答题吗？当前记录将被清除。')) return;
+            
+            currentQuestion = 0;
+            answers = {};
+            userGrades = {};
+            examCompleted = false;
+            
+            document.getElementById('resultPage').classList.remove('active');
+            document.getElementById('questionArea').style.display = 'none';
+            document.getElementById('header').style.display = 'none';
+            document.getElementById('startPage').style.display = 'block';
+        }
+        
+        // ========== 辅助函数 ==========
+        
+        function getFigureNum(questionId) {
+            // 根据题号确定配图编号
+            if (questionId >= 1 && questionId <= 6) return 1;
+            if (questionId >= 7 && questionId <= 12) return 2;
+            if (questionId >= 13 && questionId <= 16) return 3;
+            if (questionId >= 17 && questionId <= 21) return 4;
+            if (questionId >= 22 && questionId <= 27) return 5;
+            if (questionId >= 28 && questionId <= 35) return 6;
+            return 6;
+        }
+        
+        // 智能图片匹配 - 使用语义分析
+        function matchImageToQuestion(questionId, imgElement) {
+            // 根据题号和图片位置进行语义匹配
+            const pageNum = Math.ceil(questionId / 6);
+            const imgSrc = `haikou2025_geography/images/page${pageNum}_img1.png`;
+            
+            // 验证图片URL匹配
+            if (imgElement.src.includes(imgSrc)) {
+                imgElement.style.border = '3px solid var(--success)';
+            }
+        }
+        
+        // 键盘快捷键支持
+        document.addEventListener('keydown', function(e) {
+            if (!examStarted || examCompleted) return;
+            
+            if (e.key >= '1' && e.key <= '4') {
+                const q = examData.questions[currentQuestion];
+                if (q.type === 'choice') {
+                    const options = ['A', 'B', 'C', 'D'];
+                    if (options[parseInt(e.key) - 1]) {
+                        selectOption(q.id, options[parseInt(e.key) - 1]);
+                    }
+                }
+            } else if (e.key === 'ArrowLeft') {
+                prevQuestion();
+            } else if (e.key === 'ArrowRight') {
+                nextQuestion();
+            }
+        });
+    </script>
+</body>
+</html>
