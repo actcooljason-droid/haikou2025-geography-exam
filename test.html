@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>测试按钮</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 50px;
+            text-align: center;
+        }
+        .test-btn {
+            background: #4A90D9;
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+        .test-btn:hover {
+            background: #3A7BC8;
+        }
+        .hidden {
+            display: none;
+        }
+        #questionArea {
+            margin-top: 30px;
+            padding: 30px;
+            background: #f5f5f5;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>海口市2025年地理模拟试题</h1>
+    
+    <button id="startBtn" onclick="startExam()">🚀 开始答题</button>
+    
+    <div id="questionArea" class="hidden">
+        <h2>第 <span id="qNum">1</span> 题</h2>
+        <p>这是题目内容...</p>
+        <button onclick="prevQuestion()">上一题</button>
+        <button onclick="nextQuestion()">下一题</button>
+    </div>
+
+    <script>
+        let currentQuestion = 1;
+        
+        function startExam() {
+            console.log('startExam 被调用了！');
+            document.getElementById('startBtn').style.display = 'none';
+            document.getElementById('questionArea').classList.remove('hidden');
+            document.getElementById('qNum').textContent = currentQuestion;
+            alert('答题开始！');
+        }
+        
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion > 38) currentQuestion = 38;
+            document.getElementById('qNum').textContent = currentQuestion;
+        }
+        
+        function prevQuestion() {
+            currentQuestion--;
+            if (currentQuestion < 1) currentQuestion = 1;
+            document.getElementById('qNum').textContent = currentQuestion;
+        }
+    </script>
+</body>
+</html>
