@@ -753,7 +753,7 @@
                 </ul>
             </div>
             
-            <button class="start-btn" onclick="startExam()">🚀 开始答题</button>
+            <button class="start-btn" id="startBtn">🚀 开始答题</button>
         </div>
         
         <!-- 题目区域 -->
@@ -1269,6 +1269,13 @@
             } else if (e.key === 'ArrowRight') {
                 nextQuestion();
             }
+        });
+
+        // 按钮事件监听器
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('startBtn').addEventListener('click', function() {
+                startExam();
+            });
         });
     </script>
 </body>
