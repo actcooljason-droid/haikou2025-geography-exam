@@ -357,11 +357,9 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-// 页面加载完成后绑定开始按钮
-document.addEventListener('DOMContentLoaded', function() {
-    var btn = document.getElementById('startBtn');
-    if (btn) {
-        btn.addEventListener('click', startExam);
-    }
-    console.log('地理试卷应用已加载完成！');
-});
+// 脚本在body末尾执行，DOM已就绪，直接绑定
+var btn = document.getElementById('startBtn');
+if (btn) {
+    btn.addEventListener('click', startExam);
+}
+console.log('地理试卷应用已加载完成！');
